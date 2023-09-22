@@ -4,6 +4,7 @@ import { useState } from "react";
 import Logo from "./logo";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/outline";
 import NavSlideout from "./nav_slideout";
+import Link from "next/link";
 
 export default function Navbar() {
     const [navOpen, setNavOpen] = useState<boolean>(false)
@@ -17,9 +18,9 @@ export default function Navbar() {
 
     return (
         <div className="fixed w-full bg-transparent z-50 flex justify-between p-5">
-            <div className="">
+            <Link href="/" className="">
                     <Logo forceDark={false} />
-            </div>
+            </Link>
             <div className="" >
                 <button onClick={handleOpenNav}>
                     <Bars3CenterLeftIcon className="w-14 scale-x-[-1] text-secondary" />
