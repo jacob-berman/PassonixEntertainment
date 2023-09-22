@@ -9,7 +9,7 @@ import { useChangeThemeOnIntersect } from '@/utils/utils';
 import { useState, useEffect, useRef } from 'react';
 
 function Hero() {
-  const [heroIndex, setHeroIndex] = useState<number>(0);
+  const [heroIndex, setHeroIndex] = useState<number>(-3);
   const heroWords = ['worlds', 'journeys', 'passion']
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,8 +41,24 @@ function Hero() {
   {/* Hero Content */}
   <div className="relative bottom z-20 flex flex-col-reverse content-end w-full h-full p-32 text-white">
     <h5 className="absolute top-0 left-1/2 transform -translate-x-1/2 m-10">Home</h5>
-    <h1>We create {heroWords[heroIndex]}{heroIndex === 2 && <span className="text-secondary-force">.</span>}</h1>
-  </div>
+    <h1 className="relative">
+    <span className={`transition-all duration-1000 transform ${heroIndex >= -2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}>
+        We 
+    </span>
+    <span className={`transition-all duration-1000 transform ${heroIndex >= -1 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}>
+      &nbsp;create
+    </span>
+    {heroWords.map((word, index) => (
+        <span
+            key={word}
+            className={`absolute transition-all duration-1000 transform ${heroIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'}`}
+        >
+            &nbsp;{word}{heroIndex >= 2 && <span className="text-secondary-force inline-block ml-1">.</span>}
+        </span>
+    ))}
+   
+</h1>
+</div>
 </section>
   )
 }
